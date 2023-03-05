@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="n.horb" id="create manager table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table manager already exists">
+            <not>
+                <tableExists tableName="manager"/>
+            </not>
+        </preConditions>
+        <createTable tableName="manager">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="integer(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp"
+                    defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="n.horb" id="create client table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table client already exists">
+            <not>
+                <tableExists tableName="client"/>
+            </not>
+        </preConditions>
+        <createTable tableName="client">
+            <column name="id" type="binary(16)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="manager_id" type="integer">
+                <constraints foreignKeyName="fk_client_manager_id" references="manager(id)" nullable="false"/>
+            </column>
+            <column name="status" type="integer(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tax_code" type="varchar(20)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(60)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="address" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp"
+                    defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="n.horb" id="create account table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table account already exists">
+            <not>
+                <tableExists tableName="account"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="account">
+            <column name="id" type="binary(16)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="client_id" type="binary(16)">
+                <constraints foreignKeyName="client_id" references="client(id)" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="integer(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="integer(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="decimal(15,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_code" type="integer(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp"
+                    defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="n.horb" id="create transaction table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table transaction already exists">
+            <not>
+                <tableExists tableName="transaction"/>
+            </not>
+        </preConditions>
+        <createTable tableName="transaction">
+            <column name="id" type="binary(16)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="debit_account_id" type="binary(16)">
+                <constraints foreignKeyName="debit_account_id" references="account(id)" nullable="false"/>
+            </column>
+            <column name="credit_account_id" type="binary(16)">
+                <constraints foreignKeyName="credit_account_id" references="account(id)" nullable="false"/>
+            </column>
+            <column name="type" type="integer(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="decimal(12,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="n.horb" id="create product table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table product already exists">
+            <not>
+                <tableExists tableName="product"/>
+            </not>
+        </preConditions>
+        <createTable tableName="product">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="manager_id" type="integer">
+                <constraints foreignKeyName="fk_product_manager_id" references="manager(id)" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(70)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_code" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="interest_rate" type="decimal(6,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="limit" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp"
+                    defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="n.horb" id="create agreement table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table agreement already exists">
+            <not>
+                <tableExists tableName="agreement"/>
+            </not>
+        </preConditions>
+        <createTable tableName="agreement">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="account_id" type="binary(16)">
+                <constraints foreignKeyName="account_id" references="account(id)" nullable="false"/>
+            </column>
+            <column name="product_id" type="integer">
+                <constraints foreignKeyName="product_id" references="product(id)" nullable="false"/>
+            </column>
+            <column name="interest_rate" type="decimal(6,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="integer(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sum" type="decimal(15,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp"
+                    defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,43 @@
+spring:
+  main:
+    banner-mode: off
+  #    web-application-type: none
+
+  datasource:
+    url: ${JDBC_DATABASE_URL:jdbc:mysql://localhost:3306/bank_db?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=UTC}
+    username: ${JDBC_DATABASE_USERNAME:root}
+    password: ${JDBC_DATABASE_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        show-sql: true
+        ddl-auto: none
+  #        ddl-auto: validate
+
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
+
+  logging:
+   level:
+    root: INFO
+    org:
+      springframework:
+        security: DEBUG
+
+  app:
+  #  description: ${description}
+  #  version: ${version}
+
+  #  server:
+  ##    port: 8080
+  ###    servlet:
+  ####      context-path: /bankproj
+  server:
+    #    url: http://localhost:8080
+    url: ${app.server.url}
+    port: 8081
+

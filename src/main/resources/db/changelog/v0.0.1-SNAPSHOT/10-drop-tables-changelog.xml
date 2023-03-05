@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="n.horb" id="drop account table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="account"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="account"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="n.horb" id="drop agreement table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="agreement"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="agreement"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="n.horb" id="drop client table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="client"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="client"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="n.horb" id="drop manager table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="manager"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="manager"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="n.horb" id="drop product table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="product"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="product"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="n.horb" id="drop transaction table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="transaction"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="transaction"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
