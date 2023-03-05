@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -36,18 +35,6 @@ public class ProductServiceImpl implements ProductService {
                 () -> new ProductNotFoundException
                         ((ErrorMessage.CURRENT_PRODUCT_NOT_FOUND))));
     }
-
-
-//    @Override
-//    public void deleteProduct(int id) {
-//        log.info("Delete product by id {}", id);
-//       Product product=productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException
-//                ((ErrorMessage.CURRENT_PRODUCT_NOT_FOUND)));
-//       if (product!=null){
-//           productRepository.delete(product);
-//       }
-//    }
-
 
     @Override
     public ProductListDto getAllProducts() {

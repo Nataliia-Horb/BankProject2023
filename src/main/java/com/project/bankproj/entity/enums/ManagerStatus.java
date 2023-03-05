@@ -6,7 +6,7 @@ public enum ManagerStatus {
     REMOVED(3);
     private int value;
 
-    private ManagerStatus(int value) {
+    ManagerStatus(int value) {
         this.value = value;
     }
 

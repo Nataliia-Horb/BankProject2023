@@ -6,7 +6,7 @@ public enum ProductStatus {
     REMOVED(3);
     private int value;
 
-    private ProductStatus(int value) {
+    ProductStatus(int value) {
         this.value = value;
     }
 

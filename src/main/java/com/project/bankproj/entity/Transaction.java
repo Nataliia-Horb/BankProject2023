@@ -2,11 +2,8 @@ package com.project.bankproj.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Objects;
 import java.util.UUID;
 
 @Setter

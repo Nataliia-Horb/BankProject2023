@@ -7,7 +7,7 @@ public enum AccountStatus {
     REMOVED(4);
     private int value;
 
-    private AccountStatus(int value) {
+    AccountStatus(int value) {
         this.value = value;
     }
 

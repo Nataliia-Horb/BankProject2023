@@ -320,7 +320,6 @@
             <column name="currency_code" value="2"/>
         </insert>
     </changeSet>
-
 </databaseChangeLog>
 
 

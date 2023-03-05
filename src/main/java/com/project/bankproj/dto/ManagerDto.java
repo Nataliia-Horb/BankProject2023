@@ -1,9 +1,7 @@
 package com.project.bankproj.dto;
 
 import com.project.bankproj.entity.enums.ManagerStatus;
-import jakarta.persistence.*;
 import lombok.Value;
-
 import java.sql.Timestamp;
 
 @Value

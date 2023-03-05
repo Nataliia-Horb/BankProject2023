@@ -3,9 +3,7 @@ package com.project.bankproj.entity;
 import com.project.bankproj.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Getter
 @Setter

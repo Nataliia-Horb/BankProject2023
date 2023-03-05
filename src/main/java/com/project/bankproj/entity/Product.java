@@ -4,11 +4,8 @@ import com.project.bankproj.entity.enums.Currencies;
 import com.project.bankproj.entity.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Objects;
-
 import static jakarta.persistence.CascadeType.*;
 
 @Getter

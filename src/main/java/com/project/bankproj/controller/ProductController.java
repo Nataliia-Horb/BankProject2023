@@ -20,13 +20,6 @@ public class ProductController {
         return productService.getProductById(productId);
     }
 
-//    @DeleteMapping ("/product/{productId}")
-//    @ResponseStatus(HttpStatus.OK)
-//    @ResponseBody
-//    public void deleteProduct(@PathVariable("productId") int productId ) {
-//        productService.deleteProduct(productId);
-//    }
-
     @GetMapping("/product")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody

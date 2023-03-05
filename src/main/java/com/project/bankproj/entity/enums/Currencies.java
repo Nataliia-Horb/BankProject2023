@@ -8,7 +8,7 @@ public enum Currencies {
 
     private int value;
 
-    private Currencies(int value) {
+    Currencies(int value) {
         this.value = value;
     }
 

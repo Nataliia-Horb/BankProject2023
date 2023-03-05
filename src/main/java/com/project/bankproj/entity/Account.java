@@ -5,11 +5,8 @@ import com.project.bankproj.entity.enums.AccountType;
 import com.project.bankproj.entity.enums.Currencies;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 

@@ -6,7 +6,7 @@ public enum AccountType {
     CURRENT(3);
     private int value;
 
-    private AccountType(int value) {
+    AccountType(int value) {
         this.value = value;
     }
 

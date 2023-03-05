@@ -3,11 +3,8 @@ package com.project.bankproj.entity;
 import com.project.bankproj.entity.enums.ClientStatus;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-
 import java.sql.Timestamp;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
