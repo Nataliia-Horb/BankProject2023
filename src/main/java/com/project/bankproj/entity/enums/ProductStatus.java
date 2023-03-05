@@ -1,9 +1,9 @@
 package com.project.bankproj.entity.enums;
 
 public enum ProductStatus {
-    ACTIVE(0),
-    PENDING(1),
-    REMOVED(2);
+    ACTIVE(1),
+    PENDING(2),
+    REMOVED(3);
     private final int value;
 
     ProductStatus(int value) {

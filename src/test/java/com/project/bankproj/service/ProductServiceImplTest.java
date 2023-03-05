@@ -68,11 +68,4 @@ class ProductServiceImplTest {
         Exception exception = assertThrows(ProductNotFoundException.class, () -> productService.getProductById(3));
         assertEquals(ErrorMessage.CURRENT_PRODUCT_NOT_FOUND, exception.getMessage());
     }
-
-    @Test
-    void throwExceptionIfProductsListIsEmpty() {
-        when(repository.findAll()).thenReturn(new ArrayList<>());
-        Exception exception = assertThrows(ProductNotFoundException.class, () -> productService.getAllProducts());
-        assertEquals(ErrorMessage.PRODUCTS_NOT_FOUND, exception.getMessage());
-    }
 }

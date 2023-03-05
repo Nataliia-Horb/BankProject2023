@@ -34,10 +34,6 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDto> getAllProducts() {
         log.info("Get all products");
         List<Product> list = productRepository.findAll();
-        if (list.isEmpty()) {
-            throw new ProductNotFoundException
-                    (ErrorMessage.PRODUCTS_NOT_FOUND);
-        }
         return productMapper.toDtoList(list);
     }
 }
