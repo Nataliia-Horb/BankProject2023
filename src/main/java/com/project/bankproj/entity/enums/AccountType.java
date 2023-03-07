@@ -1,16 +1,16 @@
 package com.project.bankproj.entity.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum AccountType {
+
     CREDIT(1),
     DEPOSIT(2),
     CURRENT(3);
-    private int value;
+    private final int value;
 
     AccountType(int value) {
         this.value = value;
-    }
-
-    public int getValue() {
-        return value;
     }
 }

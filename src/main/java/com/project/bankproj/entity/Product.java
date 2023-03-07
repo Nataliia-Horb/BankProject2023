@@ -17,6 +17,7 @@ import static jakarta.persistence.CascadeType.*;
 @EqualsAndHashCode(of = {"id", "createdAt", "manager"})
 @ToString
 public class Product {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,5 +50,4 @@ public class Product {
     @JoinColumn(name = "manager_id",
             referencedColumnName = "id")
     private Manager manager;
-
 }

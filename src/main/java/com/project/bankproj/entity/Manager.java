@@ -35,5 +35,4 @@ public class Manager {
 
     @Column(name = "updated_at")
     public Timestamp updatedAt;
-
 }

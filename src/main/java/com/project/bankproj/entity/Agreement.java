@@ -16,6 +16,7 @@ import java.sql.Timestamp;
 @EqualsAndHashCode(of = {"id", "account", "product"})
 @ToString
 public class Agreement {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

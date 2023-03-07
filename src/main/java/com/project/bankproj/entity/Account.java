@@ -21,6 +21,7 @@ import static jakarta.persistence.CascadeType.*;
 @EqualsAndHashCode(of = {"id", "client"})
 @ToString
 public class Account {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(generator = "UUID", strategy = GenerationType.UUID)
@@ -60,5 +61,4 @@ public class Account {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "creditAccountId")
     private Set<Transaction> creditTransactions;
-
 }

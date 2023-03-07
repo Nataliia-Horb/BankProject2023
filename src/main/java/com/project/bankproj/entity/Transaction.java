@@ -42,5 +42,4 @@ public class Transaction {
     @JoinColumn(name = "credit_account_id",
             referencedColumnName = "id")
     private Account creditAccountId;
-
 }
