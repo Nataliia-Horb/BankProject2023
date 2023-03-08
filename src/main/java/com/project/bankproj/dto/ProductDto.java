@@ -26,5 +26,4 @@ public class ProductDto {
     Timestamp updatedAt;
 
     ManagerDto manager;
-
 }

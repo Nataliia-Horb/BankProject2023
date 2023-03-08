@@ -17,5 +17,4 @@ public class ManagerDto {
     Timestamp createdAt;
 
     Timestamp updatedAt;
-
 }

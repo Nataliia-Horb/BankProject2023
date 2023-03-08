@@ -4,6 +4,7 @@ import com.project.bankproj.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -11,8 +12,6 @@ import java.sql.Timestamp;
 @Table(name = "manager")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"id", "createdAt"})
-@ToString
 public class Manager {
 
     @Id
@@ -35,4 +34,18 @@ public class Manager {
 
     @Column(name = "updated_at")
     public Timestamp updatedAt;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Manager manager = (Manager) o;
+        return id == manager.id && Objects.equals(firstName, manager.firstName) &&
+                Objects.equals(lastName, manager.lastName) && Objects.equals(createdAt, manager.createdAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, createdAt);
+    }
 }

@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Objects;
+
 import static jakarta.persistence.CascadeType.*;
 
 @Getter
@@ -14,8 +16,6 @@ import static jakarta.persistence.CascadeType.*;
 @Table(name = "product")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"id", "createdAt", "manager"})
-@ToString
 public class Product {
 
     @Id
@@ -50,4 +50,18 @@ public class Product {
     @JoinColumn(name = "manager_id",
             referencedColumnName = "id")
     private Manager manager;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id && Objects.equals(name, product.name) &&
+                currency_code == product.currency_code && Objects.equals(createdAt, product.createdAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, currency_code, createdAt);
+    }
 }

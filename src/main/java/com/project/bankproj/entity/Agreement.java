@@ -3,9 +3,9 @@ package com.project.bankproj.entity;
 import com.project.bankproj.entity.enums.AgreementStatus;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -13,8 +13,6 @@ import java.sql.Timestamp;
 @Table(name = "agreement")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"id", "account", "product"})
-@ToString
 public class Agreement {
 
     @Id
@@ -47,4 +45,18 @@ public class Agreement {
     @JoinColumn(name = "product_id",
             referencedColumnName = "id")
     private Product product;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Agreement agreement = (Agreement) o;
+        return id == agreement.id && Objects.equals(createdAt, agreement.createdAt) &&
+                Objects.equals(account, agreement.account) && Objects.equals(product, agreement.product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createdAt, account, product);
+    }
 }

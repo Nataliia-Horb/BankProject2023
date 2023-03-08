@@ -9,7 +9,6 @@ public enum Currencies {
     USD(2),
     UAH(3),
     RUB(4);
-
     private final int value;
 
     Currencies(int value) {

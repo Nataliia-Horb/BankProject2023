@@ -1,4 +1,4 @@
-package com.project.bankproj.service.exception;
+package com.project.bankproj.exception;
 
 public class ProductNotFoundException extends RuntimeException {
 

@@ -1,15 +1,13 @@
 package com.project.bankproj.service;
-import com.project.bankproj.dto.ProductDto;
 
-import com.project.bankproj.dto.ProductListDto;
+import com.project.bankproj.dto.ProductDto;
 import com.project.bankproj.entity.Product;
 import com.project.bankproj.mapper.ProductMapper;
 import com.project.bankproj.repository.ProductRepository;
-import com.project.bankproj.service.exception.ErrorMessage;
-import com.project.bankproj.service.exception.ProductNotFoundException;
+import com.project.bankproj.exception.ErrorMessage;
+import com.project.bankproj.exception.ProductNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -18,14 +16,8 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
-    ProductRepository productRepository;
-    ProductMapper productMapper;
-
-    @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper) {
-        this.productRepository = productRepository;
-        this.productMapper = productMapper;
-    }
+    private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
 
     @Override
     @Transactional(readOnly = true)
@@ -37,9 +29,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductListDto getAllProducts() {
+    public List<ProductDto> getAllProducts() {
         log.info("Get all products");
         List<Product> list = productRepository.findAll();
-            return new ProductListDto(productMapper.productsDtoList(list));
+        return productMapper.productsDtoList(list);
     }
 }

@@ -1,11 +1,11 @@
 package com.project.bankproj.service;
 
 import com.project.bankproj.dto.ProductDto;
-import com.project.bankproj.dto.ProductListDto;
+import java.util.List;
 
 public interface ProductService {
+
     ProductDto getProductById(int id);
 
-    ProductListDto getAllProducts();
-
+    List<ProductDto> getAllProducts();
 }
