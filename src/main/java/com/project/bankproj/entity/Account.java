@@ -10,7 +10,6 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
-
 import static jakarta.persistence.CascadeType.*;
 
 @Getter

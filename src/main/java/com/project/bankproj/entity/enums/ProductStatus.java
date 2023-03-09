@@ -1,10 +1,6 @@
 package com.project.bankproj.entity.enums;
 
-import lombok.Getter;
-
-@Getter
 public enum ProductStatus {
-
     ACTIVE(1),
     PENDING(2),
     REMOVED(3);
@@ -12,5 +8,9 @@ public enum ProductStatus {
 
     ProductStatus(int value) {
         this.value = value;
+    }
+
+    public int getValue() {
+        return value;
     }
 }
