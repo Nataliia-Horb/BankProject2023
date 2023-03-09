@@ -1,8 +1,10 @@
 package com.project.bankproj.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -15,8 +17,6 @@ import java.util.UUID;
 @Table(name = "transaction")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"id", "createdAt", "debitAccountId", "creditAccountId"})
-@ToString
 public class Transaction {
 
     @Id
@@ -46,4 +46,18 @@ public class Transaction {
             referencedColumnName = "id")
     private Account creditAccountId;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return Objects.equals(id, that.id) && Objects.equals(createdAt, that.createdAt) &&
+                Objects.equals(debitAccountId, that.debitAccountId) &&
+                Objects.equals(creditAccountId, that.creditAccountId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createdAt, debitAccountId, creditAccountId);
+    }
 }
