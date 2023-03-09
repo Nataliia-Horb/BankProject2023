@@ -1,7 +1,9 @@
 package com.project.bankproj.entity;
 
+import com.project.bankproj.entity.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -22,7 +24,8 @@ public class Transaction {
     private UUID id;
 
     @Column(name = "type")
-    private int type;
+    @Enumerated(EnumType.ORDINAL)
+    private TransactionType type;
 
     @Column(name = "amount")
     private BigDecimal amount;
@@ -30,8 +33,9 @@ public class Transaction {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "created_at")
-    private Timestamp createdAt; //дата
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
+    private Timestamp createdAt;
 
     @ManyToOne()
     @JoinColumn(name = "debit_account_id",

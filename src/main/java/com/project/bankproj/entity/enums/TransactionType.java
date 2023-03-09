@@ -1,12 +1,12 @@
 package com.project.bankproj.entity.enums;
 
-public enum ProductStatus {
-    ACTIVE(0),
+public enum TransactionType {
+    NEW(0),
     PENDING(1),
-    REMOVED(2);
+    APPROVED(2);
     private final int value;
 
-    ProductStatus(int value) {
+    TransactionType(int value) {
         this.value = value;
     }
 

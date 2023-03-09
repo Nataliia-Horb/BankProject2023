@@ -11,5 +11,5 @@ public interface ManagerMapper {
 
     ManagerDto toDto(Manager manager);
 
-    List<ManagerDto> managersDtoList(List<Manager> managers);
+    List<ManagerDto> toDtoList(List<Manager> managers);
 }

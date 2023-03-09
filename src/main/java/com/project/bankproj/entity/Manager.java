@@ -3,6 +3,7 @@ package com.project.bankproj.entity;
 import com.project.bankproj.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -31,9 +32,11 @@ public class Manager {
     @Enumerated(EnumType.ORDINAL)
     private ManagerStatus status;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     public Timestamp createdAt;
 
+    @CreationTimestamp
     @Column(name = "updated_at")
     public Timestamp updatedAt;
 

@@ -38,6 +38,6 @@ public class ProductServiceImpl implements ProductService {
             throw new ProductNotFoundException
                     (ErrorMessage.PRODUCTS_NOT_FOUND);
         }
-        return productMapper.productsDtoList(list);
+        return productMapper.toDtoList(list);
     }
 }

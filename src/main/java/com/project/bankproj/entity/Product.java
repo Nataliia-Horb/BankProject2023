@@ -4,6 +4,7 @@ import com.project.bankproj.entity.enums.Currencies;
 import com.project.bankproj.entity.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -28,11 +29,11 @@ public class Product {
     private String name;
 
     @Column(name = "status")
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private ProductStatus status;
 
     @Column(name = "currency_code")
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private Currencies currency_code;
 
     @Column(name = "interest_rate")
@@ -41,9 +42,11 @@ public class Product {
     @Column(name = "limit")
     private int limit;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
+    @CreationTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
@@ -54,13 +57,6 @@ public class Product {
 
     public String getManager() {
         return manager.toString();
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "manager=" + manager +
-                '}';
     }
 
     @Override

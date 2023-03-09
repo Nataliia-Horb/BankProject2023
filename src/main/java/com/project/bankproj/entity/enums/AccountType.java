@@ -5,9 +5,9 @@ import lombok.Getter;
 @Getter
 public enum AccountType {
 
-    CREDIT(1),
-    DEPOSIT(2),
-    CURRENT(3);
+    CREDIT(0),
+    DEPOSIT(1),
+    CURRENT(2);
     private final int value;
 
     AccountType(int value) {

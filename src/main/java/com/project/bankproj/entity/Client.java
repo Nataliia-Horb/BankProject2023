@@ -3,6 +3,7 @@ package com.project.bankproj.entity;
 import com.project.bankproj.entity.enums.ClientStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 import java.util.HashSet;
@@ -45,9 +46,11 @@ public class Client {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
+    @CreationTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
