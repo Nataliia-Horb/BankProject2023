@@ -1,20 +1,23 @@
 package com.project.bankproj.dto;
 
-import com.project.bankproj.entity.enums.ManagerStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Value;
+
 import java.sql.Timestamp;
 
 @Value
 public class ManagerDto {
-    int id;
+    String id;
 
     String firstName;
 
     String lastName;
 
-    ManagerStatus status;
+    String status;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     Timestamp createdAt;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     Timestamp updatedAt;
 }

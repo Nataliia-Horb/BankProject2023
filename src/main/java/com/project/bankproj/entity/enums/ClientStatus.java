@@ -11,7 +11,7 @@ public enum ClientStatus {
     BLOCKED(4);
     private final int value;
 
-    ClientStatus(int value){
+    ClientStatus(int value) {
         this.value = value;
     }
 }

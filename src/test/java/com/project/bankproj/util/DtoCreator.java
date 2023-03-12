@@ -1,37 +1,24 @@
 package com.project.bankproj.util;
 
-import com.project.bankproj.dto.ManagerDto;
 import com.project.bankproj.dto.ProductDto;
-import com.project.bankproj.entity.Manager;
 import com.project.bankproj.entity.Product;
-import java.sql.Timestamp;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class DtoCreator {
-
-    public static ManagerDto getManagerDto() {
-        Manager manager = EntityCreator.getManager();
-        return new ManagerDto(
-                manager.getId(),
-                manager.getFirstName(),
-                manager.getLastName(),
-                manager.getStatus(),
-                new Timestamp(System.currentTimeMillis()),
-                new Timestamp(System.currentTimeMillis())
-        );
-    }
 
     public static ProductDto getProductDto() {
         Product product = EntityCreator.getProduct();
         return new ProductDto(
-                product.getId(),
-                product.getName(),
-                product.getStatus(),
-                product.getCurrency_code(),
-                product.getInterestRate(),
-                product.getLimit(),
+                String.valueOf(product.getId()),
+                String.valueOf(product.getName()),
+                String.valueOf(product.getStatus()),
+                String.valueOf(product.getCurrency_code()),
+                String.valueOf(product.getInterestRate()),
+                String.valueOf(product.getLimit()),
                 product.getCreatedAt(),
                 product.getUpdatedAt(),
-                getManagerDto()
+                product.getManager()
         );
     }
 }

@@ -4,9 +4,11 @@ import com.project.bankproj.entity.enums.Currencies;
 import com.project.bankproj.entity.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
+
 import static jakarta.persistence.CascadeType.*;
 
 @Getter
@@ -15,8 +17,8 @@ import static jakarta.persistence.CascadeType.*;
 @Table(name = "product")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Product {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,12 +52,24 @@ public class Product {
             referencedColumnName = "id")
     private Manager manager;
 
+    public String getManager() {
+        return manager.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "manager=" + manager +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id && Objects.equals(name, product.name) && currency_code == product.currency_code && Objects.equals(createdAt, product.createdAt);
+        return id == product.id && Objects.equals(name, product.name) && currency_code == product.currency_code &&
+                Objects.equals(createdAt, product.createdAt);
     }
 
     @Override

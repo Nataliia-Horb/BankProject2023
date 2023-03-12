@@ -2,11 +2,13 @@ package com.project.bankproj.mapper;
 
 import com.project.bankproj.dto.ProductDto;
 import com.project.bankproj.entity.Product;
+import com.project.bankproj.util.DtoCreator;
 import com.project.bankproj.util.EntityCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,46 +18,50 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Test class for ProductMapper")
 class ProductMapperTest {
-    private final ProductMapper productMapper = new ProductMapperImpl();
+    ProductMapper productMapper = new ProductMapperImpl();
 
     @Test
     @DisplayName("When we have correct product then return correct ProductDto")
     void toDto() {
         Product product = EntityCreator.getProduct();
+        ProductDto productDto = DtoCreator.getProductDto();
 
-        ProductDto currentProductDto=productMapper.toDto(product);
+        ProductDto currentProductDto = productMapper.toDto(product);
 
-        compareEntityWithDto(product, currentProductDto);
+        compareEntityWithDto(productDto, currentProductDto);
     }
 
     @Test
-    @DisplayName("When we have correct list of Accounts then return correct list of AccountDto")
+    @DisplayName("When we have correct list of product then return correct list of productDto")
     void toDtoList() {
         List<Product> productList = new ArrayList<>();
         productList.add(EntityCreator.getProduct());
+        ProductDto productDto = DtoCreator.getProductDto();
+        List<ProductDto> productDtoList = new ArrayList<>();
+        productDtoList.add(productDto);
 
-        List<ProductDto> productDtoList = productMapper.productsDtoList(productList);
+        List<ProductDto> currentProductDtoList = productMapper.productsDtoList(productList);
 
-        compareProductListWithProductListDto(productList, productDtoList);
+        compareProductListWithProductListDto(productDtoList, currentProductDtoList);
     }
 
-    private void compareEntityWithDto(Product product, ProductDto productDto) {
+    private void compareEntityWithDto(ProductDto productDto, ProductDto currentProductDto) {
         assertAll(
-                () -> assertEquals(product.getId(), productDto.getId()),
-                () -> assertEquals(product.getName(), productDto.getName()),
-                () -> assertEquals(product.getStatus(), productDto.getStatus()),
-                () -> assertEquals(product.getCurrency_code(), productDto.getCurrency_code()),
-                () -> assertEquals(product.getInterestRate(), productDto.getInterestRate()),
-                () -> assertEquals(product.getCreatedAt(), productDto.getCreatedAt()),
-                () -> assertEquals(product.getUpdatedAt(), productDto.getUpdatedAt())
-//                () -> assertEquals(product.getManager(), productDto.getManager())
+                () -> assertEquals(productDto.getId(), currentProductDto.getId()),
+                () -> assertEquals(productDto.getName(), currentProductDto.getName()),
+                () -> assertEquals(productDto.getStatus(), currentProductDto.getStatus()),
+                () -> assertEquals(productDto.getCurrency_code(), currentProductDto.getCurrency_code()),
+                () -> assertEquals(productDto.getInterestRate(), currentProductDto.getInterestRate()),
+                () -> assertEquals(productDto.getCreatedAt(), currentProductDto.getCreatedAt()),
+                () -> assertEquals(productDto.getUpdatedAt(), currentProductDto.getUpdatedAt()),
+                () -> assertEquals(productDto.getManager(), currentProductDto.getManager())
         );
     }
 
-    private void compareProductListWithProductListDto(List<Product> productList, List<ProductDto> productDtoList) {
-        assertEquals(productList.size(), productDtoList.size());
-        for (int i = 0; i < productList.size(); i++) {
-            compareEntityWithDto(productList.get(i), productDtoList.get(i));
+    private void compareProductListWithProductListDto(List<ProductDto> productDtoList, List<ProductDto> currentProductDtoList) {
+        assertEquals(productDtoList.size(), currentProductDtoList.size());
+        for (int i = 0; i < productDtoList.size(); i++) {
+            compareEntityWithDto(productDtoList.get(i), currentProductDtoList.get(i));
         }
     }
 }

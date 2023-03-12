@@ -3,6 +3,7 @@ package com.project.bankproj.entity;
 import com.project.bankproj.entity.enums.AgreementStatus;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;

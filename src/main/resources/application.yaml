@@ -3,9 +3,9 @@ spring:
     banner-mode: off
 
   datasource:
-    url: datasource.url
-    username: datasource.username
-    password: datasource.password
+    url: ${datasource.url}
+    username: ${datasource.username}
+    password: ${datasource.password}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:

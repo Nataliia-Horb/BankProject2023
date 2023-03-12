@@ -1,29 +1,30 @@
 package com.project.bankproj.dto;
 
-import com.project.bankproj.entity.enums.Currencies;
-import com.project.bankproj.entity.enums.ProductStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import java.math.BigDecimal;
+
 import java.sql.Timestamp;
 
 @Value
 public class ProductDto {
 
-    int id;
+    String id;
 
     String name;
 
-    ProductStatus status;
+    String status;
 
-    Currencies currency_code;
+    String currency_code;
 
-    BigDecimal interestRate;
+    String interestRate;
 
-    int limit;
+    String limit;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     Timestamp createdAt;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     Timestamp updatedAt;
 
-    ManagerDto manager;
+    String manager;
 }

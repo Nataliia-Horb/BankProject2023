@@ -3,6 +3,7 @@ package com.project.bankproj.entity;
 import com.project.bankproj.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ import java.util.Objects;
 @Table(name = "manager")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Manager {
 
     @Id
