@@ -4,10 +4,8 @@ import com.project.bankproj.entity.enums.AccountStatus;
 import com.project.bankproj.entity.enums.AccountType;
 import com.project.bankproj.entity.enums.Currencies;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;

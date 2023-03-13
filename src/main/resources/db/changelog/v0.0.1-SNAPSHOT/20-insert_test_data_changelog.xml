@@ -307,7 +307,7 @@
             <column name="currency_code" value="2"/>
         </insert>
     </changeSet>
-    
+
     <changeSet author="n.horb" id="insert test data into account_14 table">
         <insert tableName="account">
             <column name="id" value="860e4fd9531581f1"/>
@@ -321,7 +321,3 @@
         </insert>
     </changeSet>
 </databaseChangeLog>
-
-
-
-

@@ -2,10 +2,8 @@ package com.project.bankproj.entity;
 
 import com.project.bankproj.entity.enums.ClientStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Objects;
