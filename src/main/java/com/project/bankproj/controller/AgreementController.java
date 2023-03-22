@@ -9,12 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/agreement")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class AgreementController {
     private final AgreementService agreementService;
 
-    @PostMapping(path = "/new",
+    @PostMapping(path = "/agreement",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AgreementDto> create(@RequestBody AgreementDto newAgreement) {
         if (newAgreement == null) {
@@ -25,7 +25,7 @@ public class AgreementController {
         }
     }
 
-    @DeleteMapping(path = "/{agreementId}")
+    @DeleteMapping(path = "/agreement/{agreementId}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable("agreementId") int agreementId) {
         agreementService.delete(agreementId);

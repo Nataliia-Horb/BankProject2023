@@ -54,7 +54,7 @@ class ProductServiceImplTest {
         List<ProductDto> productDtoList = new ArrayList<>();
         productDtoList.add(DtoCreator.getProductDto());
         when(repository.findAll()).thenReturn(products);
-        when(mapper.productsDtoList(products)).thenReturn(productDtoList);
+        when(mapper.toDtoList(products)).thenReturn(productDtoList);
 
         List<ProductDto> currentProductDtoList = productService.getAllProducts();
 

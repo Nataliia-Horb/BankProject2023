@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AccountService {
-    List<AccountDto> getAccountList();
+    List<AccountDto> getAccountsList();
 
     AccountDto getAccountById(UUID uuid);
 
-    List<AccountDto> getAccountWhereProductId(int productId);
+    List<AccountDto> getAccountsWhereProductId(int productId);
 }

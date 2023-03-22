@@ -1,6 +1,7 @@
 package com.project.bankproj.controller;
 
 import com.project.bankproj.dto.ErrorResponse;
+import com.project.bankproj.exception.AgreementNotFoundException;
 import com.project.bankproj.exception.ErrorCode;
 import com.project.bankproj.exception.ProductNotFoundException;
 import com.project.bankproj.exception.AccountNotFoundException;
@@ -23,6 +24,12 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(AccountNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleAccountNotFoundException(AccountNotFoundException ex) {
         ErrorResponse body = new ErrorResponse(ex.getMessage(), ErrorCode.ACCOUNT_NOT_FOUND);
+        return new ResponseEntity<>(body, NOT_FOUND);
+    }
+
+    @ExceptionHandler({AgreementNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleAccountNotFoundException(AgreementNotFoundException ex) {
+        ErrorResponse body = new ErrorResponse(ex.getMessage(), ErrorCode.AGREEMENT_NOT_FOUND);
         return new ResponseEntity<>(body, NOT_FOUND);
     }
 }

@@ -2,6 +2,7 @@ package com.project.bankproj.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Value;
+
 import java.sql.Timestamp;
 
 @Value

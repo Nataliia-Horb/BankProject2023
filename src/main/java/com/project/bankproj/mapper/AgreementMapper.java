@@ -19,21 +19,25 @@ import static org.mapstruct.InjectionStrategy.CONSTRUCTOR;
 @Mapper(componentModel = "spring", injectionStrategy = CONSTRUCTOR)
 public interface AgreementMapper {
 
+    @Mapping(source = "product.id", target = "productId")
+    @Mapping(source = "account.id", target = "accountId")
     AgreementDto toDto(Agreement agreement);
 
-    @Mapping(target = "status", constant = "ACTIVE")
-    @Mapping(target = "account", expression = "java(checkAccountId(accountId, accountRepository))")
-    @Mapping(target = "product", expression = "java(checkProductId(productId, productRepository))")
-    Agreement toEntity(AgreementDto agreement, int productId, ProductRepository productRepository,
-                       UUID accountId, AccountRepository accountRepository);
 
-    default Product checkProductId(int productId, ProductRepository productRepository) {
-        return productRepository.findById(productId).orElseThrow(
+    @Mapping(target = "status", constant = "ACTIVE")
+    @Mapping(target = "account", expression = "java(checkAccountId(agreement, accountRepository))")
+    @Mapping(target = "product", expression = "java(checkProductId(agreement, productRepository))")
+    Agreement toEntity(AgreementDto agreement, ProductRepository productRepository,
+                       AccountRepository accountRepository);
+
+
+    default Product checkProductId(AgreementDto agreement, ProductRepository productRepository) {
+        return productRepository.findById(agreement.getProductId()).orElseThrow(
                 () -> new ProductNotFoundException(ErrorMessage.CURRENT_PRODUCT_NOT_FOUND));
     }
 
-    default Account checkAccountId(UUID accountId, AccountRepository accountRepository) {
-        return accountRepository.findAccountById(accountId).orElseThrow(
+    default Account checkAccountId(AgreementDto agreement, AccountRepository accountRepository) {
+        return accountRepository.findAccountById(UUID.fromString(agreement.getAccountId())).orElseThrow(
                 () -> new AccountNotFoundException(ErrorMessage.CURRENT_ACCOUNT_NOT_FOUND));
     }
 }

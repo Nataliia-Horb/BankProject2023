@@ -13,8 +13,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -25,20 +23,20 @@ public class AgreementServiceImpl implements AgreementService {
     private final AgreementMapper agreementMapper;
 
     @Override
-    public void save(AgreementDto newAgreementDto) {
-        Agreement newAgreement = agreementMapper.toEntity(newAgreementDto, newAgreementDto.getProductId(),
-                productRepository, UUID.fromString(newAgreementDto.getAccountId()), accountRepository);
+    public Agreement save(AgreementDto newAgreementDto) {
+        Agreement newAgreement = agreementMapper.toEntity(newAgreementDto,
+                productRepository, accountRepository);
         log.info("Create agreement {}", newAgreement);
-        agreementRepository.save(newAgreement);
-
+        return agreementRepository.save(newAgreement);
     }
 
     @Override
-    public AgreementDto delete(int agreementId) {
-        Agreement agreement = agreementRepository.findById(agreementId).orElseThrow(
-                () -> new AgreementNotFoundException(ErrorMessage.CURRENT_AGREEMENT_NOT_FOUND));
-        agreementRepository.delete(agreement);
-        log.info("Delete agreement {}", agreement);
-        return agreementMapper.toDto(agreement);
+    public void delete(int agreementId) {
+        if (agreementRepository.existsById(agreementId)) {
+            log.info("Delete agreement with id {}", agreementId);
+            agreementRepository.deleteById(agreementId);
+        } else {
+            throw new AgreementNotFoundException(ErrorMessage.CURRENT_AGREEMENT_NOT_FOUND);
+        }
     }
 }

@@ -15,8 +15,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(MockitoExtension.class)
 @DisplayName("Test class for ProductMapper")
+@ExtendWith(MockitoExtension.class)
 class ProductMapperTest {
     ProductMapper productMapper = new ProductMapperImpl();
 
@@ -28,7 +28,7 @@ class ProductMapperTest {
 
         ProductDto currentProductDto = productMapper.toDto(product);
 
-        compareEntityWithDto(productDto, currentProductDto);
+        compareDtoWithCurrentDto(productDto, currentProductDto);
     }
 
     @Test
@@ -40,12 +40,12 @@ class ProductMapperTest {
         List<ProductDto> productDtoList = new ArrayList<>();
         productDtoList.add(productDto);
 
-        List<ProductDto> currentProductDtoList = productMapper.productsDtoList(productList);
+        List<ProductDto> currentProductDtoList = productMapper.toDtoList(productList);
 
         compareProductListWithProductListDto(productDtoList, currentProductDtoList);
     }
 
-    private void compareEntityWithDto(ProductDto productDto, ProductDto currentProductDto) {
+    private void compareDtoWithCurrentDto(ProductDto productDto, ProductDto currentProductDto) {
         assertAll(
                 () -> assertEquals(productDto.getId(), currentProductDto.getId()),
                 () -> assertEquals(productDto.getName(), currentProductDto.getName()),
@@ -61,7 +61,7 @@ class ProductMapperTest {
     private void compareProductListWithProductListDto(List<ProductDto> productDtoList, List<ProductDto> currentProductDtoList) {
         assertEquals(productDtoList.size(), currentProductDtoList.size());
         for (int i = 0; i < productDtoList.size(); i++) {
-            compareEntityWithDto(productDtoList.get(i), currentProductDtoList.get(i));
+            compareDtoWithCurrentDto(productDtoList.get(i), currentProductDtoList.get(i));
         }
     }
 }

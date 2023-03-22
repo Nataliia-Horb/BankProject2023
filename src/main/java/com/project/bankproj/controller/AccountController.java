@@ -10,26 +10,27 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/account")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class AccountController {
+
     private final AccountService accountService;
 
-    @GetMapping("{uuid}")
+    @GetMapping("/account/{uuid}")
     @ResponseStatus(HttpStatus.OK)
     public AccountDto getAccountById(@PathVariable UUID uuid) {
         return accountService.getAccountById(uuid);
     }
 
-    @GetMapping("/findByProduct/{productId}")
+    @GetMapping("/account/find-by-product-id/{productId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<AccountDto> findAccountWhereProductIdIs(@PathVariable int productId) {
-        return accountService.getAccountWhereProductId(productId);
+    public List<AccountDto> findAccountsWhereProductIdIs(@PathVariable int productId) {
+        return accountService.getAccountsWhereProductId(productId);
     }
 
-    @GetMapping
+    @GetMapping("/account")
     @ResponseStatus(HttpStatus.OK)
-    public List<AccountDto> listAccounts() {
-        return accountService.getAccountList();
+    public List<AccountDto> getAllAccounts() {
+        return accountService.getAccountsList();
     }
 }

@@ -1,10 +1,11 @@
 package com.project.bankproj.service;
 
 import com.project.bankproj.dto.AgreementDto;
+import com.project.bankproj.entity.Agreement;
 
 public interface AgreementService {
 
-    void save(AgreementDto newAgreement);
+    Agreement save(AgreementDto newAgreement);
 
-    AgreementDto delete(int agreementId);
+    void delete(int agreementId);
 }
