@@ -1,10 +1,7 @@
 package com.project.bankproj.controller;
 
 import com.project.bankproj.dto.ErrorResponse;
-import com.project.bankproj.exception.AgreementNotFoundException;
-import com.project.bankproj.exception.ErrorCode;
-import com.project.bankproj.exception.ProductNotFoundException;
-import com.project.bankproj.exception.AccountNotFoundException;
+import com.project.bankproj.exception.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -30,6 +27,12 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({AgreementNotFoundException.class})
     public ResponseEntity<ErrorResponse> handleAccountNotFoundException(AgreementNotFoundException ex) {
         ErrorResponse body = new ErrorResponse(ex.getMessage(), ErrorCode.AGREEMENT_NOT_FOUND);
+        return new ResponseEntity<>(body, NOT_FOUND);
+    }
+
+    @ExceptionHandler({ElementNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleElementNotFoundException(ElementNotFoundException ex) {
+        ErrorResponse body = new ErrorResponse(ex.getMessage(), ErrorCode.ELEMENT_NOT_FOUND);
         return new ResponseEntity<>(body, NOT_FOUND);
     }
 }

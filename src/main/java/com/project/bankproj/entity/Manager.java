@@ -4,6 +4,7 @@ import com.project.bankproj.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -14,7 +15,6 @@ import java.util.Objects;
 @Table(name = "manager")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Manager {
 
     @Id
@@ -36,7 +36,7 @@ public class Manager {
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     public Timestamp createdAt;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     @Column(name = "updated_at")
     public Timestamp updatedAt;
 

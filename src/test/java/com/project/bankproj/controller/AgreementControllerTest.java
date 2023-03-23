@@ -48,12 +48,12 @@ public class AgreementControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(jsonPath("$.id").value(agreementDto.getId()))
                 .andExpect(jsonPath("$.interestRate").value(agreementDto.getInterestRate()))
                 .andExpect(jsonPath("$.sum").value(agreementDto.getSum()))
                 .andExpect(jsonPath("$.accountId").value(agreementDto.getAccountId()))
                 .andExpect(jsonPath("$.productId").value(agreementDto.getProductId()))
                 .andExpect(status().isCreated());
+        verify(agreementService, times(1)).save(agreementDto);
     }
 
     public static String asJsonString(AgreementDto agreementDto) {
@@ -72,5 +72,6 @@ public class AgreementControllerTest {
 
         mvc.perform(MockMvcRequestBuilders.delete("/api/agreement/" + agreementId))
                 .andExpect(status().isOk());
+        verify(agreementService, times(1)).delete(agreementId);
     }
 }

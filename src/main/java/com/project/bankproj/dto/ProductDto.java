@@ -26,5 +26,5 @@ public class ProductDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     Timestamp updatedAt;
 
-    String manager;
+    ManagerDto manager;
 }

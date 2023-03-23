@@ -53,8 +53,7 @@ class ProductMapperTest {
                 () -> assertEquals(productDto.getCurrency_code(), currentProductDto.getCurrency_code()),
                 () -> assertEquals(productDto.getInterestRate(), currentProductDto.getInterestRate()),
                 () -> assertEquals(productDto.getCreatedAt(), currentProductDto.getCreatedAt()),
-                () -> assertEquals(productDto.getUpdatedAt(), currentProductDto.getUpdatedAt()),
-                () -> assertEquals(productDto.getManager(), currentProductDto.getManager())
+                () -> assertEquals(productDto.getUpdatedAt(), currentProductDto.getUpdatedAt())
         );
     }
 

@@ -14,4 +14,13 @@ public enum Currencies {
     Currencies(int value) {
         this.value = value;
     }
+
+    public static Currencies getCurrency(int id) {
+        for (Currencies c : Currencies.values()) {
+            if (c.value == id) {
+                return c;
+            }
+        }
+        return null;
+    }
 }

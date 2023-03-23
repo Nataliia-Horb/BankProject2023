@@ -10,7 +10,7 @@ import java.util.UUID;
 @UtilityClass
 public class EntityCreator {
 
-    private static Manager getManager() {
+    public static Manager getManager() {
 
         Manager manager = new Manager();
         manager.setId(1);
@@ -71,5 +71,30 @@ public class EntityCreator {
         agreement.setAccount(getAccount());
         agreement.setProduct(getProduct());
         return agreement;
+    }
+
+    public static Account getAccount1() {
+
+        Account account = new Account();
+        account.setId(UUID.fromString("72c98cd3-b1d5-11ed-8545-08979887bb18"));
+        account.setName("Account_Person2");
+        account.setType(AccountType.CREDIT);
+        account.setStatus(AccountStatus.ACTIVE);
+        account.setBalance(new BigDecimal(20000));
+        account.setCurrency_code(Currencies.EUR);
+        account.setClient(getClient());
+        return account;
+    }
+
+    public static Transaction getTransaction() {
+
+        Transaction transaction = new Transaction();
+        transaction.setId(UUID.fromString("0a17b3e8-b1da-11ed-8545-08979887bb18"));
+        transaction.setType(TransactionType.NEW);
+        transaction.setAmount(BigDecimal.valueOf(1000));
+        transaction.setDescription("Some new Transaction");
+        transaction.setDebitAccountId(getAccount());
+        transaction.setCreditAccountId(getAccount1());
+        return transaction;
     }
 }

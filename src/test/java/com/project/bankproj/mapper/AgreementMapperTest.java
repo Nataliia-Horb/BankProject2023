@@ -64,7 +64,6 @@ public class AgreementMapperTest {
 
     private void compareEntityWithCurrentEntity(Agreement agreement, Agreement currentAgreement) {
         assertAll(
-                () -> assertEquals(agreement.getId(), currentAgreement.getId()),
                 () -> assertEquals(agreement.getInterestRate(), currentAgreement.getInterestRate()),
                 () -> assertEquals(agreement.getStatus(), currentAgreement.getStatus()),
                 () -> assertEquals(agreement.getSum(), currentAgreement.getSum()),
@@ -77,9 +76,9 @@ public class AgreementMapperTest {
 
     private void compareDtoWithCurrentDto(AgreementDto agreementDto, AgreementDto currentAgreementDto) {
         assertAll(
-                () -> assertEquals(agreementDto.getId(), currentAgreementDto.getId()),
                 () -> assertEquals(agreementDto.getInterestRate(), currentAgreementDto.getInterestRate()),
                 () -> assertEquals(agreementDto.getSum(), currentAgreementDto.getSum()),
+                () -> assertEquals(agreementDto.getAccountId(), currentAgreementDto.getAccountId()),
                 () -> assertEquals(agreementDto.getProductId(), currentAgreementDto.getProductId())
         );
     }

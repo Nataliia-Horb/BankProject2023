@@ -5,6 +5,7 @@ import com.project.bankproj.entity.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -46,7 +47,7 @@ public class Product {
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
@@ -54,10 +55,6 @@ public class Product {
     @JoinColumn(name = "manager_id",
             referencedColumnName = "id")
     private Manager manager;
-
-    public String getManager() {
-        return manager.toString();
-    }
 
     @Override
     public boolean equals(Object o) {

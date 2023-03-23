@@ -87,11 +87,4 @@ public class AccountServiceImplTest {
                 accountService.getAccountById(UUID.randomUUID()));
         assertEquals(ErrorMessage.CURRENT_ACCOUNT_NOT_FOUND, exception.getMessage());
     }
-
-    @Test
-    void throwExceptionIfAccountListIsEmpty() {
-        when(repository.findAll()).thenReturn(new ArrayList<>());
-        Exception exception = assertThrows(AccountNotFoundException.class, () -> accountService.getAccountsList());
-        assertEquals(ErrorMessage.ACCOUNTS_NOT_FOUND, exception.getMessage());
-    }
 }

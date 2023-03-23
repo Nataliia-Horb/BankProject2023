@@ -1,16 +1,22 @@
 package com.project.bankproj.util;
 
-import com.project.bankproj.dto.AccountDto;
-import com.project.bankproj.dto.AgreementDto;
-import com.project.bankproj.dto.ProductDto;
-import com.project.bankproj.entity.Account;
-import com.project.bankproj.entity.Agreement;
-import com.project.bankproj.entity.Product;
+import com.project.bankproj.dto.*;
+import com.project.bankproj.entity.*;
 import lombok.experimental.UtilityClass;
 
 
 @UtilityClass
 public class DtoCreator {
+
+    public static ManagerDto getManagerDto() {
+        Manager manager = EntityCreator.getManager();
+        return new ManagerDto(
+                String.valueOf(manager.getId()),
+                manager.getFirstName(),
+                manager.getLastName(),
+                String.valueOf(manager.getStatus())
+        );
+    }
 
     public static ProductDto getProductDto() {
         Product product = EntityCreator.getProduct();
@@ -23,9 +29,23 @@ public class DtoCreator {
                 String.valueOf(product.getLimit()),
                 product.getCreatedAt(),
                 product.getUpdatedAt(),
-                product.getManager()
+                getManagerDto()
         );
     }
+
+
+    public static ClientDto getClientDto() {
+        Client client = EntityCreator.getClient();
+        return new ClientDto(
+                String.valueOf(client.getId()),
+                client.getFirstName(),
+                client.getLastName(),
+                client.getEmail(),
+                client.getAddress(),
+                client.getPhone()
+        );
+    }
+
 
     public static AccountDto getAccountDto() {
         Account account = EntityCreator.getAccount();
@@ -37,18 +57,31 @@ public class DtoCreator {
                 String.valueOf(account.getBalance()),
                 String.valueOf(account.getCurrency_code()),
                 account.getCreatedAt(),
-                account.getUpdatedAt()
+                account.getUpdatedAt(),
+                getClientDto()
         );
     }
 
     public static AgreementDto getAgreementDto() {
         Agreement agreement = EntityCreator.getAgreement();
         return new AgreementDto(
-                agreement.getId(),
                 agreement.getInterestRate(),
                 agreement.getSum(),
                 agreement.getAccount().getId().toString(),
                 agreement.getProduct().getId()
+        );
+    }
+
+    public static TransactionDto getTransactionDto() {
+        Transaction transaction = EntityCreator.getTransaction();
+        return new TransactionDto(
+                String.valueOf(transaction.getId()),
+                String.valueOf(transaction.getType()),
+                String.valueOf(transaction.getAmount()),
+                transaction.getDescription(),
+                transaction.getCreatedAt(),
+                transaction.getDebitAccountId().getId().toString(),
+                transaction.getCreditAccountId().getId().toString()
         );
     }
 }

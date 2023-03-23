@@ -2,14 +2,18 @@ package com.project.bankproj.dto;
 
 import lombok.Value;
 
-
 @Value
-public class ManagerDto {
+public class ClientDto {
+
     String id;
 
     String firstName;
 
     String lastName;
 
-    String status;
+    String email;
+
+    String address;
+
+    String phone;
 }

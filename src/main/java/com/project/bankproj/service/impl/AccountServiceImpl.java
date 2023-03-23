@@ -25,10 +25,6 @@ public class AccountServiceImpl implements AccountService {
     public List<AccountDto> getAccountsList() {
         log.info("Get all accounts");
         List<Account> list = accountRepository.findAll();
-        if (list.isEmpty()) {
-            throw new AccountNotFoundException
-                    (ErrorMessage.ACCOUNTS_NOT_FOUND);
-        }
         return accountMapper.toDtoList(list);
     }
 

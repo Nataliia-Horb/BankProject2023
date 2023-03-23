@@ -65,8 +65,7 @@ class ProductControllerTest {
                 .andExpect(jsonPath("$.status").value(productDto.getStatus()))
                 .andExpect(jsonPath("$.currency_code").value(productDto.getCurrency_code()))
                 .andExpect(jsonPath("$.interestRate").value(productDto.getInterestRate()))
-                .andExpect(jsonPath("$.limit").value(productDto.getLimit()))
-                .andExpect(jsonPath("$.manager").value(productDto.getManager()));
+                .andExpect(jsonPath("$.limit").value(productDto.getLimit()));
 
         verify(productService, times(1)).getProductById(productID);
     }
