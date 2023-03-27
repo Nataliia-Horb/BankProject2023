@@ -60,13 +60,13 @@ public class Account {
             referencedColumnName = "id")
     private Client client;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "account")
+    @OneToMany(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY, mappedBy = "account")
     private Set<Agreement> agreements;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "debitAccountId")
+    @OneToMany(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY, mappedBy = "debitAccountId")
     private Set<Transaction> debitTransactions;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "creditAccountId")
+    @OneToMany(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY, mappedBy = "creditAccountId")
     private Set<Transaction> creditTransactions;
 
     @Override

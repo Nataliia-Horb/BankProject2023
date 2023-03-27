@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+import static jakarta.persistence.CascadeType.*;
+
 @Getter
 @Setter
 @Entity
@@ -41,12 +43,12 @@ public class Agreement {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @ManyToOne()
+    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id",
             referencedColumnName = "id")
     private Account account;
 
-    @ManyToOne()
+    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id",
             referencedColumnName = "id")
     private Product product;

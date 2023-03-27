@@ -5,6 +5,7 @@ import com.project.bankproj.entity.Transaction;
 import com.project.bankproj.entity.enums.Currencies;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,5 +15,5 @@ public interface TransactionRepository extends JpaRepository<Product, Currencies
 
     @Query("from Transaction t where t.creditAccountId.currency_code =:currency " +
             "or t.debitAccountId.currency_code =:currency")
-    List<Transaction> findTransactionsWhereCurrencies(Currencies currency);
+    List<Transaction> findTransactionsWhereCurrencies(@Param("currency") Currencies currency);
 }

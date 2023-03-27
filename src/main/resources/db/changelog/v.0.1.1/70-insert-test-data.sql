@@ -25,11 +25,11 @@ VALUES (unhex(replace('80cf3044-b1cd-11ed-8545-08979887bb18', '-', '')), 1, 1,
 
 INSERT INTO `account` (`id`, `client_id`, `name`, `type`, `status`, `balance`, `currency_code`)
 VALUES (unhex(replace('b8ed7c33-b1cd-11ed-8545-08979887bb18', '-', '')),
-        unhex(replace('4c15d4f1-b1d3-11ed-8545-08979887bb18', '-', '')), 'account Wolf', 1, 0, 100.00, 1),
+        unhex(replace('4c15d4f1-b1d3-11ed-8545-08979887bb18', '-', '')), 'account Wolf', 1, 0, 100.00, 0),
        (unhex(replace('e5655ad4-b1cd-11ed-8545-08979887bb18', '-', '')),
         unhex(replace('80cf3044-b1cd-11ed-8545-08979887bb18', '-', '')), 'account Fleischmann_1', 2, 0, 25000.00, 2),
        (unhex(replace('4ce519a0-b1d5-11ed-8545-08979887bb18', '-', '')),
-        unhex(replace('80cf3044-b1cd-11ed-8545-08979887bb18', '-', '')), 'account Fleischmann_2', 2, 0, 3800.00, 3),
+        unhex(replace('80cf3044-b1cd-11ed-8545-08979887bb18', '-', '')), 'account Fleischmann_2', 2, 0, 3800.00, 0),
        (unhex(replace('4ce51a24-b1d5-11ed-8545-08979887bb18', '-', '')),
         unhex(replace('4c15d4b3-b1d3-11ed-8545-08979887bb18', '-', '')), 'account Friedrich_1', 2, 0, 400.00, 1),
        (unhex(replace('5e938b24-b1d5-11ed-8545-08979887bb18', '-', '')),
@@ -39,7 +39,7 @@ VALUES (unhex(replace('b8ed7c33-b1cd-11ed-8545-08979887bb18', '-', '')),
        (unhex(replace('72c98cd3-b1d5-11ed-8545-08979887bb18', '-', '')),
         unhex(replace('a04b2b18-b1d3-11ed-8545-08979887bb18', '-', '')), 'account Graf', 2, 0, 1700.00, 2),
        (unhex(replace('72c98cd7-b1d5-11ed-8545-08979887bb18', '-', '')),
-        unhex(replace('ae6c8264-b1d4-11ed-8545-08979887bb18', '-', '')), 'account Michel_1', 2, 0, 850.00, 2),
+        unhex(replace('ae6c8264-b1d4-11ed-8545-08979887bb18', '-', '')), 'account Michel_1', 2, 0, 850.00, 0),
        (unhex(replace('72c98cdb-b1d5-11ed-8545-08979887bb18', '-', '')),
         unhex(replace('ae6c8264-b1d4-11ed-8545-08979887bb18', '-', '')), 'account Michel_2', 2, 0, 900.00, 3);
 

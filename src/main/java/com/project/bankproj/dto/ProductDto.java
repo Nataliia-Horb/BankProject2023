@@ -1,11 +1,13 @@
 package com.project.bankproj.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import java.sql.Timestamp;
 
 @Value
+@Schema(description = "Entity of Product")
 public class ProductDto {
 
     String id;
