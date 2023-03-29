@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 
 @Value
 @Schema(description = "Entity of Agreement")
+@RequiredArgsConstructor
 public class AgreementDto {
 
     @NotNull

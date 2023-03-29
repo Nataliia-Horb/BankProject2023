@@ -41,7 +41,6 @@ public class AgreementControllerTest {
         Agreement agreement = EntityCreator.getAgreement();
 
         when(agreementService.save(agreementDto)).thenReturn(agreement);
-
         mvc.perform(MockMvcRequestBuilders
                         .post("/api/agreement")
                         .content(asJsonString(agreementDto))
