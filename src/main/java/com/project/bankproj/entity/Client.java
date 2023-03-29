@@ -3,12 +3,16 @@ package com.project.bankproj.entity;
 import com.project.bankproj.entity.enums.ClientStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+
+import static jakarta.persistence.CascadeType.*;
 
 @Getter
 @Setter
@@ -45,18 +49,20 @@ public class Client {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @ManyToOne()
+    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id",
             referencedColumnName = "id")
     private Manager manager;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    @OneToMany(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY, mappedBy = "client")
     private Set<Account> accounts = new HashSet<>();
 
     @Override

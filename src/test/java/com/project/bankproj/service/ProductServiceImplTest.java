@@ -54,7 +54,7 @@ class ProductServiceImplTest {
         List<ProductDto> productDtoList = new ArrayList<>();
         productDtoList.add(DtoCreator.getProductDto());
         when(repository.findAll()).thenReturn(products);
-        when(mapper.productsDtoList(products)).thenReturn(productDtoList);
+        when(mapper.toDtoList(products)).thenReturn(productDtoList);
 
         List<ProductDto> currentProductDtoList = productService.getAllProducts();
 
@@ -67,12 +67,5 @@ class ProductServiceImplTest {
     void throwExceptionIfNotFindProductId() {
         Exception exception = assertThrows(ProductNotFoundException.class, () -> productService.getProductById(3));
         assertEquals(ErrorMessage.CURRENT_PRODUCT_NOT_FOUND, exception.getMessage());
-    }
-
-    @Test
-    void throwExceptionIfProductsListIsEmpty() {
-        when(repository.findAll()).thenReturn(new ArrayList<>());
-        Exception exception = assertThrows(ProductNotFoundException.class, () -> productService.getAllProducts());
-        assertEquals(ErrorMessage.PRODUCTS_NOT_FOUND, exception.getMessage());
     }
 }

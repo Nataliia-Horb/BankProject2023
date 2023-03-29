@@ -5,6 +5,8 @@ import com.project.bankproj.entity.enums.AccountType;
 import com.project.bankproj.entity.enums.Currencies;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -45,9 +47,11 @@ public class Account {
     @Enumerated(EnumType.ORDINAL)
     private Currencies currency_code;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
@@ -56,10 +60,13 @@ public class Account {
             referencedColumnName = "id")
     private Client client;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "debitAccountId")
+    @OneToMany(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY, mappedBy = "account")
+    private Set<Agreement> agreements;
+
+    @OneToMany(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY, mappedBy = "debitAccountId")
     private Set<Transaction> debitTransactions;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "creditAccountId")
+    @OneToMany(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY, mappedBy = "creditAccountId")
     private Set<Transaction> creditTransactions;
 
     @Override

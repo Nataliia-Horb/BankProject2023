@@ -11,7 +11,7 @@ public class ErrorResponse {
     String errorCode;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    LocalDateTime time =LocalDateTime.now();
+    LocalDateTime time = LocalDateTime.now();
 
     public ErrorResponse(String message, String errorCode) {
         this.message = message;

@@ -1,12 +1,16 @@
 package com.project.bankproj.entity;
 
+import com.project.bankproj.entity.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
+
+import static jakarta.persistence.CascadeType.*;
 
 @Setter
 @Getter
@@ -22,7 +26,8 @@ public class Transaction {
     private UUID id;
 
     @Column(name = "type")
-    private int type;
+    @Enumerated(EnumType.ORDINAL)
+    private TransactionType type;
 
     @Column(name = "amount")
     private BigDecimal amount;
@@ -30,15 +35,16 @@ public class Transaction {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "created_at")
-    private Timestamp createdAt; //дата
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
+    private Timestamp createdAt;
 
-    @ManyToOne()
+    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "debit_account_id",
             referencedColumnName = "id")
     private Account debitAccountId;
 
-    @ManyToOne()
+    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "credit_account_id",
             referencedColumnName = "id")
     private Account creditAccountId;

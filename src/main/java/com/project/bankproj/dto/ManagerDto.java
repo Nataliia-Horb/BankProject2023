@@ -1,11 +1,11 @@
 package com.project.bankproj.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Value;
 
-import java.sql.Timestamp;
 
 @Value
+@Schema(description = "Entity of Manager")
 public class ManagerDto {
     String id;
 
@@ -14,10 +14,4 @@ public class ManagerDto {
     String lastName;
 
     String status;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    Timestamp createdAt;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    Timestamp updatedAt;
 }
