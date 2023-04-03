@@ -132,6 +132,10 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
         </dependency>
+
+        <!--         authorisation -->
+
+        <!--       end authorisation -->
     </dependencies>
 
     <build>
@@ -205,7 +209,6 @@
                         <exclude>com/**/dto/*</exclude>
                         <exclude>com/**/exception/*</exclude>
                         <exclude>com/**/configuration/*</exclude>
-                        <exclude>com/***/ResponseExceptionHandler.class</exclude>
                         <exclude>com/**/BankProjApplication.class</exclude>
                     </excludes>
                     <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
