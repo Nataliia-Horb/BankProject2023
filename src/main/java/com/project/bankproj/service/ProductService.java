@@ -8,5 +8,4 @@ public interface ProductService {
     ProductDto getProductById(int id);
 
     List<ProductDto> getAllProducts();
-
 }

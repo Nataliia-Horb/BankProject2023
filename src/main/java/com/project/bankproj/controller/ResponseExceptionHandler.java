@@ -25,14 +25,8 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({AgreementNotFoundException.class})
-    public ResponseEntity<ErrorResponse> handleAccountNotFoundException(AgreementNotFoundException ex) {
+    public ResponseEntity<ErrorResponse> handleAgreementNotFoundException(AgreementNotFoundException ex) {
         ErrorResponse body = new ErrorResponse(ex.getMessage(), ErrorCode.AGREEMENT_NOT_FOUND);
-        return new ResponseEntity<>(body, NOT_FOUND);
-    }
-
-    @ExceptionHandler({ElementNotFoundException.class})
-    public ResponseEntity<ErrorResponse> handleElementNotFoundException(ElementNotFoundException ex) {
-        ErrorResponse body = new ErrorResponse(ex.getMessage(), ErrorCode.ELEMENT_NOT_FOUND);
         return new ResponseEntity<>(body, NOT_FOUND);
     }
 }

@@ -29,6 +29,6 @@ public class TransactionController {
     public List<TransactionDto> findAllTransactionsWhereAccountCurrencyIs(
             @PathVariable("currency_code") @Parameter(description = "enter the numerical value of the currency code: " +
                     " 0-EUR, 1-USD, 2-UAH, 3-RUB") int currency_code) {
-            return transactionService.getTransactionsWhereAccountCurrency(Currencies.getCurrency(currency_code));
+        return transactionService.getTransactionsWhereAccountCurrency(Currencies.getCurrency(currency_code));
     }
 }
