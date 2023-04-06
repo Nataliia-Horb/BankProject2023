@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
-@WebMvcTest({ProductController.class, TransactionController.class, AgreementController.class, AccountController.class})
+@WebMvcTest({ProductController.class, AgreementController.class, AccountController.class})
 @DisplayName("ResponseExceptionHandler test class")
 public class ResponseExceptionHandlerTest {
     @Autowired
