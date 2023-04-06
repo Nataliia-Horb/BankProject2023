@@ -2,8 +2,6 @@ package com.project.bankproj.controller;
 
 import com.project.bankproj.dto.TransactionDto;
 import com.project.bankproj.entity.enums.Currencies;
-import com.project.bankproj.exception.ElementNotFoundException;
-import com.project.bankproj.exception.ErrorMessage;
 import com.project.bankproj.service.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -31,11 +29,6 @@ public class TransactionController {
     public List<TransactionDto> findAllTransactionsWhereAccountCurrencyIs(
             @PathVariable("currency_code") @Parameter(description = "enter the numerical value of the currency code: " +
                     " 0-EUR, 1-USD, 2-UAH, 3-RUB") int currency_code) {
-        Currencies currency = Currencies.getCurrency(currency_code);
-        if (currency == null) {
-            throw new ElementNotFoundException(ErrorMessage.CURRENT_ELEMENT_NOT_FOUND);
-        } else {
             return transactionService.getTransactionsWhereAccountCurrency(Currencies.getCurrency(currency_code));
-        }
     }
 }

@@ -57,6 +57,19 @@ public class AgreementServiceImplTest {
     }
 
     @Test
+    void delete() {
+        Agreement newAgreement = EntityCreator.getAgreement();
+        int agreementId = newAgreement.getId();
+        when(repository.existsById(agreementId)).thenReturn(true);
+        doNothing().when(repository).deleteById(agreementId);
+
+        agreementService.delete(agreementId);
+
+        verify(repository, times(1)).existsById(agreementId);
+        verify(repository, times(1)).deleteById(agreementId);
+    }
+
+    @Test
     void throwExceptionIfNotFindAgreementIdByDelete() {
         int agreementId = 10;
         when(repository.existsById(agreementId)).thenReturn(false);

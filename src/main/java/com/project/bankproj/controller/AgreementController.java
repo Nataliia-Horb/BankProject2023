@@ -10,7 +10,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,16 +25,11 @@ public class AgreementController {
     @Operation(
             summary = "create new Agreement",
             description = "allows you to create new agreement")
-    public ResponseEntity<AgreementDto> create(@Valid @RequestBody @Parameter(description =
+    public void create(@Valid @RequestBody @Parameter(description =
             "enter the following data for entity consciousness " +
                     "'interestRate':(double),'sum': (double), 'accountId': (uuid), 'productId': (int)")
-                                               AgreementDto newAgreement) {
-        if (newAgreement == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } else {
-            agreementService.save(newAgreement);
-            return new ResponseEntity<>(newAgreement, HttpStatus.CREATED);
-        }
+                       AgreementDto newAgreement) {
+        agreementService.save(newAgreement);
     }
 
     @DeleteMapping(path = "/{agreementId}")

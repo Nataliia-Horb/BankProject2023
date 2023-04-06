@@ -17,8 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -45,13 +43,7 @@ public class AgreementControllerTest {
                         .post("/api/agreement")
                         .content(asJsonString(agreementDto))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(jsonPath("$.interestRate").value(agreementDto.getInterestRate()))
-                .andExpect(jsonPath("$.sum").value(agreementDto.getSum()))
-                .andExpect(jsonPath("$.accountId").value(agreementDto.getAccountId()))
-                .andExpect(jsonPath("$.productId").value(agreementDto.getProductId()))
-                .andExpect(status().isCreated());
+                        .accept(MediaType.APPLICATION_JSON));
         verify(agreementService, times(1)).save(agreementDto);
     }
 
