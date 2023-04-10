@@ -1,6 +1,7 @@
 package com.project.bankproj.mapper;
 
 import com.project.bankproj.dto.AgreementDto;
+import com.project.bankproj.dto.AgreementResponseDto;
 import com.project.bankproj.entity.Account;
 import com.project.bankproj.entity.Agreement;
 import com.project.bankproj.entity.Product;
@@ -22,6 +23,9 @@ public interface AgreementMapper {
     @Mapping(source = "product.id", target = "productId")
     @Mapping(source = "account.id", target = "accountId")
     AgreementDto toDto(Agreement agreement);
+
+
+    AgreementResponseDto toResponseDto(Agreement agreement);
 
 
     @Mapping(target = "status", constant = "ACTIVE")

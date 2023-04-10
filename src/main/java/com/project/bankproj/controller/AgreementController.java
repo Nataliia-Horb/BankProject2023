@@ -1,6 +1,7 @@
 package com.project.bankproj.controller;
 
 import com.project.bankproj.dto.AgreementDto;
+import com.project.bankproj.dto.AgreementResponseDto;
 import com.project.bankproj.service.AgreementService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -25,11 +26,11 @@ public class AgreementController {
     @Operation(
             summary = "create new Agreement",
             description = "allows you to create new agreement")
-    public void create(@Valid @RequestBody @Parameter(description =
+    public AgreementResponseDto create(@Valid @RequestBody @Parameter(description =
             "enter the following data for entity consciousness " +
                     "'interestRate':(double),'sum': (double), 'accountId': (uuid), 'productId': (int)")
-                       AgreementDto newAgreement) {
-        agreementService.save(newAgreement);
+                                       AgreementDto newAgreement) {
+        return agreementService.save(newAgreement);
     }
 
     @DeleteMapping(path = "/{agreementId}")

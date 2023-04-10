@@ -33,7 +33,6 @@ public class DtoCreator {
         );
     }
 
-
     public static ClientDto getClientDto() {
         Client client = EntityCreator.getClient();
         return new ClientDto(
@@ -45,7 +44,6 @@ public class DtoCreator {
                 client.getPhone()
         );
     }
-
 
     public static AccountDto getAccountDto() {
         Account account = EntityCreator.getAccount();
@@ -69,6 +67,20 @@ public class DtoCreator {
                 agreement.getSum(),
                 agreement.getAccount().getId().toString(),
                 agreement.getProduct().getId()
+        );
+    }
+
+    public static AgreementResponseDto getAgreementResponseDto() {
+        Agreement agreement = EntityCreator.getAgreement();
+        return new AgreementResponseDto(
+                String.valueOf(agreement.getId()),
+                String.valueOf(agreement.getInterestRate()),
+                String.valueOf(agreement.getStatus()),
+                String.valueOf(agreement.getSum()),
+                agreement.getCreatedAt(),
+                agreement.getUpdatedAt(),
+                getAccountDto(),
+                getProductDto()
         );
     }
 

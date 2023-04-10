@@ -1,6 +1,7 @@
 package com.project.bankproj.service;
 
 import com.project.bankproj.dto.AgreementDto;
+import com.project.bankproj.dto.AgreementResponseDto;
 import com.project.bankproj.entity.Agreement;
 import com.project.bankproj.exception.AgreementNotFoundException;
 import com.project.bankproj.exception.ErrorMessage;
@@ -46,13 +47,15 @@ public class AgreementServiceImplTest {
     void save() {
         Agreement newAgreement = EntityCreator.getAgreement();
         AgreementDto newAgreementDto = DtoCreator.getAgreementDto();
+        AgreementResponseDto agreementResponseDto = DtoCreator.getAgreementResponseDto();
         when(repository.save(newAgreement)).thenReturn(newAgreement);
         when(mapper.toEntity(newAgreementDto, productRepository,
                 accountRepository)).thenReturn(newAgreement);
+        when(mapper.toResponseDto(newAgreement)).thenReturn(agreementResponseDto);
 
-        Agreement currentAgreement = agreementService.save(newAgreementDto);
+        AgreementResponseDto currentAgreement = agreementService.save(newAgreementDto);
 
-        assertEquals(newAgreement, currentAgreement);
+        assertEquals(agreementResponseDto, currentAgreement);
         verify(repository, times(1)).save(newAgreement);
     }
 

@@ -2,6 +2,7 @@ package com.project.bankproj.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.bankproj.dto.AgreementDto;
+import com.project.bankproj.dto.AgreementResponseDto;
 import com.project.bankproj.entity.Agreement;
 import com.project.bankproj.service.impl.AgreementServiceImpl;
 import com.project.bankproj.util.DtoCreator;
@@ -16,7 +17,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -36,14 +40,20 @@ public class AgreementControllerTest {
     @Test
     void create() throws Exception {
         AgreementDto agreementDto = DtoCreator.getAgreementDto();
-        Agreement agreement = EntityCreator.getAgreement();
+        AgreementResponseDto agreementResponseDto = DtoCreator.getAgreementResponseDto();
 
-        when(agreementService.save(agreementDto)).thenReturn(agreement);
+        when(agreementService.save(agreementDto)).thenReturn(agreementResponseDto);
         mvc.perform(MockMvcRequestBuilders
                         .post("/api/agreement")
                         .content(asJsonString(agreementDto))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON));
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.id", is(agreementResponseDto.getId())))
+                .andExpect(jsonPath("$.interestRate", is(agreementResponseDto.getInterestRate())))
+                .andExpect(jsonPath("$.status", is(agreementResponseDto.getStatus())))
+                .andExpect(jsonPath("$.sum").value(agreementResponseDto.getSum()));
         verify(agreementService, times(1)).save(agreementDto);
     }
 

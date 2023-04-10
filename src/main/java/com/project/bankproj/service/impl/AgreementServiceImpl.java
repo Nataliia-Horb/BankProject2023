@@ -1,6 +1,7 @@
 package com.project.bankproj.service.impl;
 
 import com.project.bankproj.dto.AgreementDto;
+import com.project.bankproj.dto.AgreementResponseDto;
 import com.project.bankproj.entity.Agreement;
 import com.project.bankproj.exception.AgreementNotFoundException;
 import com.project.bankproj.exception.ErrorMessage;
@@ -23,11 +24,11 @@ public class AgreementServiceImpl implements AgreementService {
     private final AgreementMapper agreementMapper;
 
     @Override
-    public Agreement save(AgreementDto newAgreementDto) {
+    public AgreementResponseDto save(AgreementDto newAgreementDto) {
         Agreement newAgreement = agreementMapper.toEntity(newAgreementDto,
                 productRepository, accountRepository);
         log.info("Create agreement {}", newAgreement);
-        return agreementRepository.save(newAgreement);
+        return agreementMapper.toResponseDto(agreementRepository.save(newAgreement));
     }
 
     @Override

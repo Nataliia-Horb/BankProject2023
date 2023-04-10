@@ -1,6 +1,7 @@
 package com.project.bankproj.mapper;
 
 import com.project.bankproj.dto.AgreementDto;
+import com.project.bankproj.dto.AgreementResponseDto;
 import com.project.bankproj.entity.Account;
 import com.project.bankproj.entity.Agreement;
 import com.project.bankproj.entity.Product;
@@ -13,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 
 import java.util.Optional;
 import java.util.UUID;
@@ -47,22 +47,6 @@ public class AgreementMapperTest {
 
         Agreement currentAgreement = agreementMapper.toEntity(agreementDto, productRepository, accountRepository);
 
-        compareEntityWithCurrentEntity(agreement, currentAgreement);
-    }
-
-    @Test
-    @DisplayName("When we have correct agreementDto then return correct agreement")
-    void toDto() {
-        Agreement agreement = EntityCreator.getAgreement();
-        AgreementDto agreementDto = DtoCreator.getAgreementDto();
-
-        AgreementDto currentAgreementDto = agreementMapper.toDto(agreement);
-
-        compareDtoWithCurrentDto(agreementDto, currentAgreementDto);
-    }
-
-
-    private void compareEntityWithCurrentEntity(Agreement agreement, Agreement currentAgreement) {
         assertAll(
                 () -> assertEquals(agreement.getInterestRate(), currentAgreement.getInterestRate()),
                 () -> assertEquals(agreement.getStatus(), currentAgreement.getStatus()),
@@ -74,12 +58,37 @@ public class AgreementMapperTest {
         );
     }
 
-    private void compareDtoWithCurrentDto(AgreementDto agreementDto, AgreementDto currentAgreementDto) {
+    @Test
+    @DisplayName("When we have correct agreementDto then return correct agreement")
+    void toDto() {
+        Agreement agreement = EntityCreator.getAgreement();
+        AgreementDto agreementDto = DtoCreator.getAgreementDto();
+
+        AgreementDto currentAgreementDto = agreementMapper.toDto(agreement);
+
         assertAll(
                 () -> assertEquals(agreementDto.getInterestRate(), currentAgreementDto.getInterestRate()),
                 () -> assertEquals(agreementDto.getSum(), currentAgreementDto.getSum()),
                 () -> assertEquals(agreementDto.getAccountId(), currentAgreementDto.getAccountId()),
                 () -> assertEquals(agreementDto.getProductId(), currentAgreementDto.getProductId())
+        );
+    }
+
+    @Test
+    @DisplayName("When we have correct agreement then return correct agreementResponseDto")
+    void toResponseDto() {
+        Agreement agreement = EntityCreator.getAgreement();
+        AgreementResponseDto agreementDto = DtoCreator.getAgreementResponseDto();
+
+        AgreementResponseDto currentAgreementDto = agreementMapper.toResponseDto(agreement);
+
+        assertAll(
+                () -> assertEquals(agreementDto.getId(), currentAgreementDto.getId()),
+                () -> assertEquals(agreementDto.getInterestRate(), currentAgreementDto.getInterestRate()),
+                () -> assertEquals(agreementDto.getStatus(), currentAgreementDto.getStatus()),
+                () -> assertEquals(agreementDto.getSum(), currentAgreementDto.getSum()),
+                () -> assertEquals(agreementDto.getAccount().getId(), currentAgreementDto.getAccount().getId()),
+                () -> assertEquals(agreementDto.getProduct().getId(), currentAgreementDto.getProduct().getId())
         );
     }
 }
